@@ -14,11 +14,7 @@ import paquete.clases.*;
 public class Prueba {
     public static void main(String[] args) {
         Alumno niko = new Alumno();
-        niko.SolicitarCursos();
-        niko.GenerarCodigo();
-        niko.SolicitarNotas();
-        
-        System.out.println(niko.VerInfo());
+        niko.Iniciar();
 
         
     }

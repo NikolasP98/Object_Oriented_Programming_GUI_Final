@@ -5,6 +5,8 @@
  */
 package paquete.clases;
 
+import java.time.Year;
+import java.util.Calendar;
 import java.util.Random;
 import java.util.Scanner;
 import paquete.interfaces.Educacion;
@@ -17,7 +19,7 @@ public class Alumno extends Persona implements Educacion{
     protected int[][] notas;
     protected String[] cursos;
     protected double[] promedio;
-    protected int cur;
+    protected int cur, tiempo;
 
     public Alumno() {
         notas = new int[10][2];
@@ -53,7 +55,9 @@ public class Alumno extends Persona implements Educacion{
     @Override
     public void GenerarCodigo() {
         Random rand = new Random();
-        this.codigo = "A" + (rand.nextInt(2020-1995+1)+1995) + "" + (rand.nextInt(9999-1000+1)+1000);
+        int x = rand.nextInt(2020-1995+1) + 1995;
+        this.tiempo = Year.now().getValue() - x;
+        this.codigo = "A" + x + "" + (rand.nextInt(9999-1000+1)+1000);
     }
     
     //SOLICITA NOMBRE DE CURSOS Y LOS GUARDA EN UN ARREGLO CON TAMAÑO "CUR"
@@ -154,6 +158,8 @@ public class Alumno extends Persona implements Educacion{
             
         }
         
+        System.out.println(sep);
+        
     }
     
     
@@ -161,8 +167,21 @@ public class Alumno extends Persona implements Educacion{
     @Override
     public String VerInfo() {
         return super.VerInfo() +
-                "\nCursos matriculados: " + this.cur; //To change body of generated methods, choose Tools | Templates.
+                "\nCursos matriculados: " + this.cur + 
+                "\nTiempo siendo alumno: " + this.tiempo + " año(s)"; //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
+    public void Iniciar(){
+        this.SolicitarNombre();
+        this.SolicitarDistrito();
+        this.GenerarCodigo();
+        this.SolicitarCursos();
+        this.SolicitarNotas();
+        
+        System.out.println(this.VerInfo());
+    }
+    
     
     
     

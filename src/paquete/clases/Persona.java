@@ -93,7 +93,6 @@ public abstract class Persona {
             
             ver = sc.nextInt();
             sc.nextLine();
-            System.out.println(sep);
         }
     } 
     
