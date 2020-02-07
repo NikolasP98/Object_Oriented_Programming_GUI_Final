@@ -16,7 +16,7 @@ public abstract class Persona {
     protected Universidad uni;
     protected Thread t;
     
-    protected String sep = "========================";
+    protected String sep = "================================================";
     
     public Persona() {
     }
