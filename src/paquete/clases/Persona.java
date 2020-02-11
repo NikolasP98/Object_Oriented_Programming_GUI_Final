@@ -6,17 +6,16 @@
 package paquete.clases;
 
 import java.util.Scanner;
+import paquete.interfaces.Caracteres;
 
 /**
  *
  * @author L46374
  */
-public abstract class Persona {
+public abstract class Persona implements Caracteres{
     protected String nombre, codigo, distrito;
     protected Universidad uni;
     protected Thread t;
-    
-    protected String sep = "================================================";
     
     public Persona() {
     }

@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paquete.clases;
+package paquete.interfaces;
 
 /**
  *
  * @author L46374
  */
-public class Universidad {
-    protected final String nombre = "Universidad de Lima";
+public interface Caracteres {
+    
+    String sep = "================================================";
+    String ifaz ="=================== INTERFAZ ===================";
     
     
     
