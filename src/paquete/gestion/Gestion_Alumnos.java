@@ -5,13 +5,14 @@
  */
 package paquete.gestion;
 
-import paquete.clases.Alumno;
+import paquete.clases.*;
+import paquete.interfaces.Caracteres;
 
 /**
  *
  * @author L46374
  */
-public class Gestion_Alumnos {
+public class Gestion_Alumnos implements Caracteres{
     private Alumno[] alum;
     private int contador = 0;
     
@@ -27,10 +28,20 @@ public class Gestion_Alumnos {
         this.alum = alum;
     }
     
-    public void AgregarAlum(Alumno a){
+    public void AgregarAlum(int rep){
         if(contador < alum.length){
-            this.alum[contador] = a;
-            this.contador++;
+            Alumno a = new Alumno();
+            
+            for(int i=0; i<rep; i++){
+                
+                System.out.println(sep +"\nAlumno #" +(i+1) +":");
+                
+                a.Iniciar();
+                
+                this.alum[contador] = a;
+                this.contador++;
+            }
+            
         } else {
             System.out.println("Límite de alumnos alcanzado. \nElimine algunos alumnos para utilizar esta función.");
         }
@@ -60,6 +71,8 @@ public class Gestion_Alumnos {
         for(int i=0; i<contador; i++){
             cad+=alum[i].getNombre() + "\n";
         }
+        System.out.println(cad);
+        
     }
     
     

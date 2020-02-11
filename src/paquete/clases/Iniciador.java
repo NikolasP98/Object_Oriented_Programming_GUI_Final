@@ -41,19 +41,11 @@ public class Iniciador implements Caracteres{
                     
                     case 1: //AGREGAR ALUMNOS
                         
+                        int b;
                         System.out.println(sep+"\nCuantos alumnos desea ingresar?");
-                        opcion = sc.nextInt();
+                        b = sc.nextInt();
                         
-                        for(int i=0; i<opcion; i++){
-                            
-                            Alumno alumno = new Alumno();
-                            System.out.println(sep +"\nAlumno #" +(i+1) +":");
-                            
-                            alumno.Iniciar();
-                            
-                            galum.AgregarAlum(alumno);
-                            
-                        }
+                        galum.AgregarAlum(b);
                         
                         galum.MostrarGestion();
                         
