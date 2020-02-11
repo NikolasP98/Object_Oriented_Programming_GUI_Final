@@ -6,7 +6,6 @@
 package paquete.clases;
 
 import java.time.Year;
-import java.util.Calendar;
 import java.util.Random;
 import java.util.Scanner;
 import paquete.interfaces.Educacion;
@@ -83,7 +82,7 @@ public class Alumno extends Persona implements Educacion{
             String cad = "";
             
             for(int i=0; i<cur; i++){
-                cad += cursos[i] + "\n";
+                cad += (i+1) + ". " + cursos[i] + "\n";
             }
             
             System.out.println(sep);
@@ -99,7 +98,6 @@ public class Alumno extends Persona implements Educacion{
         System.out.println(sep);
     }
     
-    @Override
     public void SolicitarNotas(){
         int ver;
         Random rand = new Random();

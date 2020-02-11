@@ -98,18 +98,6 @@ public abstract class Persona {
     
     public abstract void GenerarCodigo();
     
-    
-    /*
-    public void Iniciar(){
-        this.SolicitarNombre();
-        this.SolicitarDistrito();
-        this.GenerarCodigo();
-    }
-    */
-    
-    
-    
-    
     public String VerInfo() {
         return "Nombre: " + nombre + 
                 "\nCodigo: " + codigo + 

@@ -13,9 +13,11 @@ import paquete.clases.*;
  */
 public class Prueba {
     public static void main(String[] args) {
-        Alumno niko = new Alumno();
-        niko.Iniciar();
-
+        Docente niko = new Docente();
+        niko.SolicitarCursos();
+        niko.SolicitarHoras();
+        System.out.println(niko.VerInfo());
         
+        //No me sale el sueldo de profe :(
     }
 }

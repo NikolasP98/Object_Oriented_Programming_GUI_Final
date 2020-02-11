@@ -7,10 +7,12 @@ package paquete.interfaces;
 
 /**
  *
- * @author L46374
+ * @author Nikolas
  */
-public interface Educacion {
+public interface Sueldo {
     
-    void SolicitarCursos();
+    double pagoHora = 30.5;
+    void CalcularSueldo();
+    
     
 }
