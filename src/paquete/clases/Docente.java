@@ -17,8 +17,8 @@ import paquete.interfaces.*;
 public class Docente extends Persona implements Educacion, Sueldo{
     private int tiempo, cur, totalHrs;
     double sueldo;
-    private final String[] cursos;
-    private final int[] horas;
+    private String[] cursos;
+    private int[] horas;
     
     
     public Docente() {
