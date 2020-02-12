@@ -52,9 +52,9 @@ public class Gestion_Docentes {
     public void EliminarProfe(int i){
         int indic = i-1;
         
-        if(contador>0 && contador > i){
+        if(contador>0 && contador > indic){
             for(int k=indic; k<contador; k++){
-                this.profe[indic] = this.profe[k+1];
+                this.profe[k] = this.profe[k+1];
             }
             
             this.profe[contador-1] = null;
@@ -77,6 +77,10 @@ public class Gestion_Docentes {
         
     }
     
-    
+    public void VerInfo(){
+        for(int i=0; i<contador; i++){
+            System.out.println(profe[i].VerInfo() + "\n\n");
+        }
+    }
     
 }

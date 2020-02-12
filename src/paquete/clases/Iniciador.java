@@ -143,7 +143,7 @@ public class Iniciador implements Caracteres{
                                 
                             }
                             
-                        galum.MostrarGestion();
+                        gprof.MostrarGestion();
                         
                         opcion=0;
                         while(opcion != 1){
@@ -154,14 +154,13 @@ public class Iniciador implements Caracteres{
                         this.Iniciar();
                         
                         break;
-                    case 2: //VER TODOS LOS ALUMNOS
+                    case 2: //VER TODOS LOS DOCENTES
                         
-                        System.out.println(sep + "\nCargando datos de alumnos...\n");
+                        System.out.println(sep + "\nCargando datos de docentes...\n");
                         try {Thread.sleep(2500);} catch (InterruptedException e) {}
                         System.out.println(sep);
-                        for(int i=0; i<galum.getContador(); i++){
-                            galum.VerInfo();
-                        }
+                        gprof.VerInfo();
+                        
                         
                         opcion=0;
                         while(opcion != 1){
@@ -173,18 +172,18 @@ public class Iniciador implements Caracteres{
                         
                         break;
                         
-                    case 3: //ELIMINAR ALUMNOS
-                        System.out.println(sep + "\nEliminación de Alumno:, elegir alumno a borrar: ");
+                    case 3: //ELIMINAR DOCENTE
+                        System.out.println(sep + "\nEliminación de Docente:, elegir profesor a borrar: ");
                         
-                        galum.MostrarGestion();
+                        gprof.MostrarGestion();
                         
                         opcion = sc.nextInt();
                         
-                        galum.EliminarAlum(opcion);
+                        gprof.EliminarProfe(opcion);
                         
                         System.out.println(sep);
                         
-                        galum.MostrarGestion();
+                        gprof.MostrarGestion();
                         
                         opcion=0;
                         while(opcion != 1){
@@ -213,6 +212,18 @@ public class Iniciador implements Caracteres{
                 System.out.println("Opción inválida");
                 this.Iniciar();
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
     }
     
