@@ -96,11 +96,12 @@ public abstract class Persona implements Caracteres{
     } 
     
     public abstract void GenerarCodigo();
+    public abstract void Iniciar();
     
     public String VerInfo() {
         return "Nombre: " + nombre + 
                 "\nCodigo: " + codigo + 
                 "\nDistrito: " + distrito + 
-                "\nUniversidad: " + uni;
+                "\nUniversidad: Universidad de Lima"; //+ uni.getNombre();
     }
 }

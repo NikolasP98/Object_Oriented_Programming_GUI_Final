@@ -170,6 +170,7 @@ public class Alumno extends Persona implements Educacion{
     }
     
     
+    @Override
     public void Iniciar(){
         this.SolicitarNombre();
         this.SolicitarDistrito();

@@ -13,5 +13,13 @@ public class Universidad {
     protected final String nombre = "Universidad de Lima";
     
     
+    public Universidad() {
+    }
+    
+    public String getNombre() {
+        return nombre;
+    }
+    
+    
     
 }

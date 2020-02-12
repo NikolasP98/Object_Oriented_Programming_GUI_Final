@@ -28,6 +28,15 @@ public class Gestion_Alumnos implements Caracteres{
     public void setAlum(Alumno[] alum) {
         this.alum = alum;
     }
+
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+    
     
     public void AgregarAlum(Alumno a){
         if(alum.length > contador){
@@ -44,9 +53,9 @@ public class Gestion_Alumnos implements Caracteres{
     public void EliminarAlum(int i){
         int indic = i-1;
         
-        if(contador>0 && contador > i){
+        if(contador>0 && contador > indic){
             for(int k=indic; k<contador; k++){
-                this.alum[indic] = this.alum[k+1];
+                this.alum[k] = this.alum[k+1];
             }
             
             this.alum[contador-1] = null;
@@ -60,7 +69,7 @@ public class Gestion_Alumnos implements Caracteres{
     }
     
     public void MostrarGestion(){
-        String cad= sep + "\n";
+        String cad = sep + "\nAlumnos Ingresados:\n";
         
         for(int i=0; i<contador; i++){
             cad += "Alumno " + (i+1) + ": " + alum[i].getNombre() + "\n";
@@ -69,6 +78,11 @@ public class Gestion_Alumnos implements Caracteres{
         
     }
     
+    public void VerInfo(){
+        for(int i=0; i<contador; i++){
+            System.out.println(alum[i].VerInfo() + "\n\n");
+        }
+    }
     
     
 }

@@ -15,8 +15,8 @@ import paquete.interfaces.*;
  * @author Nikolas
  */
 public class Docente extends Persona implements Educacion, Sueldo{
-    private int tiempo, cur, totalHrs;
-    double sueldo;
+    private int tiempo, cur;
+    double sueldo, totalHrs;
     private String[] cursos;
     private int[] horas;
     
@@ -129,6 +129,19 @@ public class Docente extends Persona implements Educacion, Sueldo{
                 "\nHoras semanasles: " + this.totalHrs +
                 "\nSueldo mensual: " + this.sueldo; //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void Iniciar(){
+        this.SolicitarNombre();
+        this.SolicitarDistrito();
+        this.GenerarCodigo();
+        this.SolicitarCursos();
+        this.SolicitarHoras();
+        
+        System.out.println(this.VerInfo());
+    }
+    
+    
     
     
     

@@ -15,7 +15,9 @@ import paquete.interfaces.Caracteres;
  */
 public class Iniciador implements Caracteres{
     Alumno alum;
+    Docente prof;
     Gestion_Alumnos galum = new Gestion_Alumnos();
+    Gestion_Docentes gprof = new Gestion_Docentes(); 
     Scanner sc = new Scanner(System.in);
     
     
@@ -54,28 +56,154 @@ public class Iniciador implements Caracteres{
                                 
                             }
                             
-
-                        
                         galum.MostrarGestion();
+                        
+                        opcion=0;
+                        while(opcion != 1){
+                            System.out.println("Ingrese 1 para regresar al menú:");
+                            opcion = sc.nextInt();
+                        }
+                        
+                        this.Iniciar();
                         
                         break;
                     case 2: //VER TODOS LOS ALUMNOS
                         
-                        break;
-                    case 3: //ELIMINAR ALUMNOS
+                        System.out.println(sep + "\nCargando datos de alumnos...");
+                        try {Thread.sleep(2500);} catch (InterruptedException e) {}
+                        System.out.println(sep);
+                        
+                        galum.VerInfo();
+                        
+                        
+                        opcion=0;
+                        while(opcion != 1){
+                            System.out.println("Ingrese 1 para regresar al menú:");
+                            opcion = sc.nextInt();
+                        }
+                        
+                        this.Iniciar();
                         
                         break;
+                        
+                    case 3: //ELIMINAR ALUMNOS
+                        System.out.println(sep + "\nEliminación de Alumno:, elegir alumno a borrar: ");
+                        
+                        galum.MostrarGestion();
+                        
+                        opcion = sc.nextInt();
+                        
+                        galum.EliminarAlum(opcion);
+                        
+                        System.out.println(sep);
+                        
+                        galum.MostrarGestion();
+                        
+                        opcion=0;
+                        while(opcion != 1){
+                            System.out.println("Ingrese 1 para regresar al menú:");
+                            opcion = sc.nextInt();
+                        }
+                        
+                        this.Iniciar();
+                        
+                        break;
+                        
                     case 4: //VOLVER A INICIAR INTERFAZ
                         this.Iniciar();
                         break;
+                        
                     default: //ERROR
                         System.out.println("Opcion inválida");
-                
-                
+                        this.Iniciar();
                 }
-                
                 break;
+                
             case 2: //INTERFAZ PARA DOCENTES
+                
+                System.out.println(sep + "\nOpciones para DOCENTE: \n1. Agregar profesores \n2. Ver profesores \n3. Eliminar profesores \n4. Regresar");
+                opcion = sc.nextInt();
+                
+                switch(opcion){
+                    
+                    case 1: //AGREGAR DOCENTES
+                        
+                        System.out.println(sep+"\nCuantos profesores desea ingresar?");
+                        
+                        int b = sc.nextInt();
+                        
+                            for(int i=0; i<b; i++){
+                                
+                                Docente a = new Docente();
+                                
+                                System.out.println(sep +"\nProfesor #" +(i+1) +":");
+                                
+                                a.Iniciar();
+                                gprof.AgregarProfe(a);
+                                
+                            }
+                            
+                        galum.MostrarGestion();
+                        
+                        opcion=0;
+                        while(opcion != 1){
+                            System.out.println("Ingrese 1 para regresar al menú:");
+                            opcion = sc.nextInt();
+                        }
+                        
+                        this.Iniciar();
+                        
+                        break;
+                    case 2: //VER TODOS LOS ALUMNOS
+                        
+                        System.out.println(sep + "\nCargando datos de alumnos...\n");
+                        try {Thread.sleep(2500);} catch (InterruptedException e) {}
+                        System.out.println(sep);
+                        for(int i=0; i<galum.getContador(); i++){
+                            galum.VerInfo();
+                        }
+                        
+                        opcion=0;
+                        while(opcion != 1){
+                            System.out.println("Ingrese 1 para regresar al menú:");
+                            opcion = sc.nextInt();
+                        }
+                        
+                        this.Iniciar();
+                        
+                        break;
+                        
+                    case 3: //ELIMINAR ALUMNOS
+                        System.out.println(sep + "\nEliminación de Alumno:, elegir alumno a borrar: ");
+                        
+                        galum.MostrarGestion();
+                        
+                        opcion = sc.nextInt();
+                        
+                        galum.EliminarAlum(opcion);
+                        
+                        System.out.println(sep);
+                        
+                        galum.MostrarGestion();
+                        
+                        opcion=0;
+                        while(opcion != 1){
+                            System.out.println("Ingrese 1 para regresar al menú:");
+                            opcion = sc.nextInt();
+                        }
+                        
+                        this.Iniciar();
+                        
+                        break;
+                        
+                    case 4: //VOLVER A INICIAR INTERFAZ
+                        this.Iniciar();
+                        break;
+                        
+                    default: //ERROR
+                        System.out.println("Opcion inválida");
+                        this.Iniciar();
+                }
                 
                 break;
             case 3: //INTERFAZ PARA STAFF
@@ -83,6 +211,7 @@ public class Iniciador implements Caracteres{
                 break;
             default:
                 System.out.println("Opción inválida");
+                this.Iniciar();
         }
         
     }
