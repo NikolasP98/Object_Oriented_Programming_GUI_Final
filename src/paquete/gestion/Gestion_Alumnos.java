@@ -14,10 +14,11 @@ import paquete.interfaces.Caracteres;
  */
 public class Gestion_Alumnos implements Caracteres{
     private Alumno[] alum;
-    private int contador = 0;
+    private int contador;
     
     public Gestion_Alumnos() {
         alum = new Alumno[100];
+        contador = 0;
     }
 
     public Alumno[] getAlum() {
@@ -28,21 +29,14 @@ public class Gestion_Alumnos implements Caracteres{
         this.alum = alum;
     }
     
-    public void AgregarAlum(int rep){
-        if(contador < alum.length){
-            Alumno a = new Alumno();
+    public void AgregarAlum(Alumno a){
+        if(alum.length > contador){
             
-            for(int i=0; i<rep; i++){
-                
-                System.out.println(sep +"\nAlumno #" +(i+1) +":");
-                
-                a.Iniciar();
-                
-                this.alum[contador] = a;
-                this.contador++;
-            }
+            this.alum[contador] = a;
+            this.contador++;
             
         } else {
+            
             System.out.println("Límite de alumnos alcanzado. \nElimine algunos alumnos para utilizar esta función.");
         }
     }
@@ -66,10 +60,10 @@ public class Gestion_Alumnos implements Caracteres{
     }
     
     public void MostrarGestion(){
-        String cad= "";
+        String cad= sep + "\n";
         
         for(int i=0; i<contador; i++){
-            cad+=alum[i].getNombre() + "\n";
+            cad += "Alumno " + (i+1) + ": " + alum[i].getNombre() + "\n";
         }
         System.out.println(cad);
         

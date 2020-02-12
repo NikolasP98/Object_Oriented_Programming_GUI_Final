@@ -15,7 +15,7 @@ import paquete.interfaces.Caracteres;
  */
 public class Iniciador implements Caracteres{
     Alumno alum;
-    Gestion_Alumnos galum;
+    Gestion_Alumnos galum = new Gestion_Alumnos();
     Scanner sc = new Scanner(System.in);
     
     
@@ -41,11 +41,20 @@ public class Iniciador implements Caracteres{
                     
                     case 1: //AGREGAR ALUMNOS
                         
-                        int b;
                         System.out.println(sep+"\nCuantos alumnos desea ingresar?");
-                        b = sc.nextInt();
                         
-                        galum.AgregarAlum(b);
+                        int b = sc.nextInt();
+                            for(int i=0; i<b; i++){
+                                
+                                Alumno a = new Alumno();
+                                
+                                System.out.println(sep +"\nAlumno #" +(i+1) +":");
+                                a.Iniciar();
+                                galum.AgregarAlum(a);
+                                
+                            }
+                            
+
                         
                         galum.MostrarGestion();
                         
