@@ -60,6 +60,9 @@ public class Gestion_Alumnos implements Caracteres{
             
             this.alum[contador-1] = null;
             
+            
+            
+            
             contador--;
         } else if(contador <= 0){
             System.out.println("Función inválida. No hay suficientes alumnos registrados.");
