@@ -48,11 +48,11 @@ public class Iniciador implements Caracteres{
                         int b = sc.nextInt();
                             for(int i=0; i<b; i++){
                                 
-                                Alumno a = new Alumno();
+                                //Alumno a = new Alumno();
                                 
                                 System.out.println(sep +"\nAlumno #" +(i+1) +":");
-                                a.Iniciar();
-                                galum.AgregarAlum(a);
+                                //a.Iniciar();
+                                //galum.AgregarAlum(a);
                                 
                             }
                             

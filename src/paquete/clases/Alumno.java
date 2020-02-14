@@ -15,12 +15,14 @@ import paquete.interfaces.Educacion;
  * @author L46374
  */
 public class Alumno extends Persona implements Educacion{
-    protected int[][] notas;
-    protected String[] cursos;
-    protected double[] promedio;
-    protected int cur, tiempo;
+    private int[][] notas;
+    private String[] cursos;
+    private double[] promedio;
+    private int cur, tiempo;
+    private double promTotal;
 
-    public Alumno() {
+    public Alumno(String nombre) {
+        this.nombre = nombre;
         notas = new int[10][2];
         cursos = new String[10];
         promedio = new double[10];
@@ -104,10 +106,9 @@ public class Alumno extends Persona implements Educacion{
         Scanner sc = new Scanner(System.in);
         double prom = 0.0;
         
-        System.out.println("Recuperando notas...");
-        
         for(int i=0; i<cur; i++){
             for(int j=0; j<2; j++){
+                
                 notas[i][j] = rand.nextInt(20)+1;
                 
                 prom += notas[i][j];
@@ -115,8 +116,11 @@ public class Alumno extends Persona implements Educacion{
             }
             
             this.promedio[i] = prom/2;
+            this.promTotal += prom/2;
             prom = 0;
         }
+        
+        this.promTotal /= cur;
         
         try {
                 Thread.sleep(2500);

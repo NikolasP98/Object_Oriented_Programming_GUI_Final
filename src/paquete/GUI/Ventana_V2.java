@@ -6,19 +6,48 @@
 package paquete.GUI;
 
 import java.awt.Toolkit;
+import paquete.clases.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Nikolas
  */
 public class Ventana_V2 extends javax.swing.JFrame {
-
+    
+    DefaultTableModel modelo_alumno, modelo_docente, modelo_staff;
+    
+    Loading load = new Loading();
+    
     /**
      * Creates new form Ventana_V2
      */
     public Ventana_V2() {
+        
+        modelo_alumno = new DefaultTableModel();
+        modelo_docente = new DefaultTableModel();
+        modelo_staff = new DefaultTableModel();
+        
+        load.LoadingScreen("Iniciando Aplicación", 40);
         initComponents();
-        SetIcon();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        //SetIcon();
+        
+        //Tabla Alumnos
+        modelo_alumno.addColumn("Nombre");
+        modelo_alumno.addColumn("Codigo");
+        modelo_alumno.addColumn("# Cursos");
+        modelo_alumno.addColumn("Promedio");
+        
+        this.jTable1.setModel(modelo_alumno);
+        
+        
+        
+        
+        
+        
+        
     }
 
     /**
@@ -35,15 +64,26 @@ public class Ventana_V2 extends javax.swing.JFrame {
         Alum_Main_Label = new javax.swing.JLabel();
         Doc_Main_Label = new javax.swing.JLabel();
         Staff_Main_Label = new javax.swing.JLabel();
+        About_Main = new javax.swing.JLabel();
         CardLayout = new javax.swing.JPanel();
-        Menu = new javax.swing.JPanel();
+        About_Panel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        Alumno_Panel = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        nombre_alumno = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TRABAJO_FINAL");
+        setResizable(false);
 
         jSplitPane1.setDividerLocation(200);
         jSplitPane1.setDividerSize(0);
@@ -52,60 +92,87 @@ public class Ventana_V2 extends javax.swing.JFrame {
         Side_Menu.setMinimumSize(new java.awt.Dimension(200, 0));
         Side_Menu.setPreferredSize(new java.awt.Dimension(250, 677));
 
-        Alum_Main_Label.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
+        Alum_Main_Label.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         Alum_Main_Label.setForeground(new java.awt.Color(255, 255, 255));
-        Alum_Main_Label.setText("Alumnos");
+        Alum_Main_Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Student.png"))); // NOI18N
+        Alum_Main_Label.setText("  Alumnos");
+        Alum_Main_Label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Alum_Main_Label.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                Alum_Main_LabelFocusGained(evt);
+            }
+        });
         Alum_Main_Label.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Alum_Main_LabelMouseClicked(evt);
             }
         });
 
-        Doc_Main_Label.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
+        Doc_Main_Label.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         Doc_Main_Label.setForeground(new java.awt.Color(255, 255, 255));
-        Doc_Main_Label.setText("Docentes");
+        Doc_Main_Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Teacher.png"))); // NOI18N
+        Doc_Main_Label.setText("  Docentes");
+        Doc_Main_Label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        Staff_Main_Label.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
+        Staff_Main_Label.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         Staff_Main_Label.setForeground(new java.awt.Color(255, 255, 255));
-        Staff_Main_Label.setText("Staff");
+        Staff_Main_Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Staff.png"))); // NOI18N
+        Staff_Main_Label.setText("  Staff");
+        Staff_Main_Label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        About_Main.setFont(new java.awt.Font("Franklin Gothic Book", 0, 14)); // NOI18N
+        About_Main.setForeground(new java.awt.Color(255, 255, 255));
+        About_Main.setText("About");
+        About_Main.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        About_Main.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                About_MainMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout Side_MenuLayout = new javax.swing.GroupLayout(Side_Menu);
         Side_Menu.setLayout(Side_MenuLayout);
         Side_MenuLayout.setHorizontalGroup(
             Side_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Side_MenuLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(About_Main)
+                .addContainerGap())
             .addGroup(Side_MenuLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(24, 24, 24)
                 .addGroup(Side_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Staff_Main_Label)
                     .addComponent(Alum_Main_Label)
                     .addComponent(Doc_Main_Label))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         Side_MenuLayout.setVerticalGroup(
             Side_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Side_MenuLayout.createSequentialGroup()
-                .addGap(185, 185, 185)
+                .addGap(209, 209, 209)
                 .addComponent(Alum_Main_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(49, 49, 49)
+                .addGap(27, 27, 27)
                 .addComponent(Doc_Main_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(49, 49, 49)
+                .addGap(26, 26, 26)
                 .addComponent(Staff_Main_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(331, 331, 331))
+                .addGap(292, 292, 292)
+                .addComponent(About_Main, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jSplitPane1.setLeftComponent(Side_Menu);
 
         CardLayout.setLayout(new java.awt.CardLayout());
 
-        Menu.setBackground(new java.awt.Color(52, 60, 64));
-        Menu.setPreferredSize(new java.awt.Dimension(680, 600));
+        About_Panel.setBackground(new java.awt.Color(52, 60, 64));
+        About_Panel.setPreferredSize(new java.awt.Dimension(680, 600));
 
         jLabel1.setFont(new java.awt.Font("Franklin Gothic Book", 0, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Seleccionar las cuentas que desee gestionar.");
 
-        jLabel5.setFont(new java.awt.Font("Franklin Gothic Book", 1, 28)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Franklin Gothic Book", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Applicación Gestión de Personas");
@@ -118,34 +185,140 @@ public class Ventana_V2 extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(155, 197, 225));
         jLabel3.setText("Version 1.3 - beta @gestorversion1.3");
 
-        javax.swing.GroupLayout MenuLayout = new javax.swing.GroupLayout(Menu);
-        Menu.setLayout(MenuLayout);
-        MenuLayout.setHorizontalGroup(
-            MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuLayout.createSequentialGroup()
+        javax.swing.GroupLayout About_PanelLayout = new javax.swing.GroupLayout(About_Panel);
+        About_Panel.setLayout(About_PanelLayout);
+        About_PanelLayout.setHorizontalGroup(
+            About_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(About_PanelLayout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(About_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel1))
-                .addGap(347, 347, 347))
+                .addGap(66, 66, 66))
         );
-        MenuLayout.setVerticalGroup(
-            MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuLayout.createSequentialGroup()
+        About_PanelLayout.setVerticalGroup(
+            About_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(About_PanelLayout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addGap(66, 66, 66)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 297, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addContainerGap())
         );
 
-        CardLayout.add(Menu, "card2");
+        CardLayout.add(About_Panel, "card2");
+
+        Alumno_Panel.setBackground(new java.awt.Color(52, 60, 64));
+
+        jLabel6.setFont(new java.awt.Font("Franklin Gothic Book", 1, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Gestión de Alumnos");
+
+        jLabel4.setFont(new java.awt.Font("Franklin Gothic Book", 0, 20)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Seleccionar la opción que desee gestionar.");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Agregar.png"))); // NOI18N
+        jLabel7.setText("  Agregar Alumnos");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Eliminar.png"))); // NOI18N
+        jLabel8.setText("  Eliminar Alumnos");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Nombre:");
+
+        nombre_alumno.setBackground(new java.awt.Color(52, 60, 64));
+        nombre_alumno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombre_alumno.setForeground(new java.awt.Color(255, 255, 255));
+        nombre_alumno.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        nombre_alumno.setCaretColor(new java.awt.Color(255, 255, 255));
+        nombre_alumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombre_alumnoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Alumno_PanelLayout = new javax.swing.GroupLayout(Alumno_Panel);
+        Alumno_Panel.setLayout(Alumno_PanelLayout);
+        Alumno_PanelLayout.setHorizontalGroup(
+            Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Alumno_PanelLayout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Alumno_PanelLayout.createSequentialGroup()
+                        .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(Alumno_PanelLayout.createSequentialGroup()
+                        .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(Alumno_PanelLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel7)))
+                            .addGroup(Alumno_PanelLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(7, 7, 7)
+                                .addComponent(nombre_alumno, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)))
+                        .addGap(32, 32, 32)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))))
+        );
+        Alumno_PanelLayout.setVerticalGroup(
+            Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Alumno_PanelLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(Alumno_PanelLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(nombre_alumno))
+                        .addGap(315, 315, 315)
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(94, 94, 94))
+        );
+
+        CardLayout.add(Alumno_Panel, "card3");
 
         jSplitPane1.setRightComponent(CardLayout);
 
@@ -153,7 +326,7 @@ public class Ventana_V2 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1454, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1223, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +339,43 @@ public class Ventana_V2 extends javax.swing.JFrame {
     private void Alum_Main_LabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Alum_Main_LabelMouseClicked
         // TODO add your handling code here:
         
+        this.Alumno_Panel.setVisible(true);
+        this.About_Panel.setVisible(false);
+        
+
+        
+
+        
+
     }//GEN-LAST:event_Alum_Main_LabelMouseClicked
+
+    private void Alum_Main_LabelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Alum_Main_LabelFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Alum_Main_LabelFocusGained
+
+    private void About_MainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_About_MainMouseClicked
+        // TODO add your handling code here:
+        this.About_Panel.setVisible(true);
+        this.Alumno_Panel.setVisible(false);
+        
+        
+    }//GEN-LAST:event_About_MainMouseClicked
+
+    private void nombre_alumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre_alumnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombre_alumnoActionPerformed
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        String nom = this.nombre_alumno.getText();
+        
+        Alumno alum = new Alumno(nom);
+        alum.GenerarCodigo();
+        
+        
+        
+        
+    }//GEN-LAST:event_jLabel7MouseClicked
 
     /**
      * @param args the command line arguments
@@ -204,25 +413,35 @@ public class Ventana_V2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel About_Main;
+    private javax.swing.JPanel About_Panel;
     private javax.swing.JLabel Alum_Main_Label;
+    private javax.swing.JPanel Alumno_Panel;
     private javax.swing.JPanel CardLayout;
     private javax.swing.JLabel Doc_Main_Label;
-    private javax.swing.JPanel Menu;
     private javax.swing.JPanel Side_Menu;
     private javax.swing.JLabel Staff_Main_Label;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField nombre_alumno;
     // End of variables declaration//GEN-END:variables
 
     private void SetIcon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("persona.png")));
     }
     
-    public static String convertToMultiline(String orig){
-        return "<html>" + orig.replaceAll("\n", "<br>");
-    }
+    
+    
+    
     
 }
