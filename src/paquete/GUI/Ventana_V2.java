@@ -65,6 +65,7 @@ public class Ventana_V2 extends javax.swing.JFrame {
         Doc_Main_Label = new javax.swing.JLabel();
         Staff_Main_Label = new javax.swing.JLabel();
         About_Main = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         CardLayout = new javax.swing.JPanel();
         About_Panel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -130,33 +131,41 @@ public class Ventana_V2 extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Logo.png"))); // NOI18N
+        jLabel10.setAlignmentX(0.5F);
+
         javax.swing.GroupLayout Side_MenuLayout = new javax.swing.GroupLayout(Side_Menu);
         Side_Menu.setLayout(Side_MenuLayout);
         Side_MenuLayout.setHorizontalGroup(
             Side_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Side_MenuLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(About_Main)
-                .addContainerGap())
-            .addGroup(Side_MenuLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(Side_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Staff_Main_Label)
-                    .addComponent(Alum_Main_Label)
-                    .addComponent(Doc_Main_Label))
-                .addContainerGap(44, Short.MAX_VALUE))
+                    .addComponent(Doc_Main_Label)
+                    .addGroup(Side_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel10)
+                        .addComponent(Alum_Main_Label)))
+                .addGap(44, 44, 44))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Side_MenuLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(About_Main)
+                .addContainerGap())
         );
         Side_MenuLayout.setVerticalGroup(
             Side_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Side_MenuLayout.createSequentialGroup()
-                .addGap(209, 209, 209)
+                .addGap(44, 44, 44)
+                .addComponent(jLabel10)
+                .addGap(54, 54, 54)
                 .addComponent(Alum_Main_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(27, 27, 27)
                 .addComponent(Doc_Main_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(26, 26, 26)
+                .addGap(32, 32, 32)
                 .addComponent(Staff_Main_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(292, 292, 292)
-                .addComponent(About_Main, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                .addGap(317, 317, 317)
+                .addComponent(About_Main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -229,7 +238,7 @@ public class Ventana_V2 extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Agregar.png"))); // NOI18N
-        jLabel7.setText("  Agregar Alumnos");
+        jLabel7.setText("  Agregar Alumno");
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel7MouseClicked(evt);
@@ -239,7 +248,7 @@ public class Ventana_V2 extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Eliminar.png"))); // NOI18N
-        jLabel8.setText("  Eliminar Alumnos");
+        jLabel8.setText("  Eliminar Alumno");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -284,15 +293,15 @@ public class Ventana_V2 extends javax.swing.JFrame {
                     .addGroup(Alumno_PanelLayout.createSequentialGroup()
                         .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(Alumno_PanelLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7)))
-                            .addGroup(Alumno_PanelLayout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(7, 7, 7)
-                                .addComponent(nombre_alumno, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)))
-                        .addGap(32, 32, 32)
+                                .addComponent(nombre_alumno, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                                .addGap(32, 32, 32))
+                            .addGroup(Alumno_PanelLayout.createSequentialGroup()
+                                .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel7))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35))))
         );
@@ -303,18 +312,20 @@ public class Ventana_V2 extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Alumno_PanelLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(nombre_alumno))
-                        .addGap(315, 315, 315)
+                        .addGap(55, 55, 55)
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel8))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel8)
+                        .addGap(240, 240, 240))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Alumno_PanelLayout.createSequentialGroup()
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(94, 94, 94))
         );
 
@@ -422,6 +433,7 @@ public class Ventana_V2 extends javax.swing.JFrame {
     private javax.swing.JPanel Side_Menu;
     private javax.swing.JLabel Staff_Main_Label;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
