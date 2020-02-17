@@ -20,7 +20,7 @@ public class Ventana_V2 extends javax.swing.JFrame {
     DefaultTableModel modelo_docente;
     DefaultTableModel modelo_staff;
     
-    Gestion galumnos, gprofes, gstaff;
+    Gestion_Alumno galumnos; //gprofes, gstaff;
     Loading load = new Loading();
     
     /**
@@ -33,8 +33,8 @@ public class Ventana_V2 extends javax.swing.JFrame {
         modelo_staff = new DefaultTableModel();
         
         galumnos = new Gestion_Alumno();
-        gprofes = new Gestion_Docente();
-        gstaff = new Gestion_Staff();
+        //gprofes = new Gestion_Docente();
+        //gstaff = new Gestion_Staff();
         
         load.LoadingScreen("Iniciando Aplicación", 40);
         
@@ -444,7 +444,7 @@ public class Ventana_V2 extends javax.swing.JFrame {
         
         galumnos.Agregar(alum);
         
-        PoblarTabla(modelo_alumno, galumnos);
+        //PoblarTabla(modelo_alumno, galumnos);
         
     }//GEN-LAST:event_jLabel7MouseClicked
 
@@ -456,7 +456,7 @@ public class Ventana_V2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         galumnos.Eliminar(jTable1.getSelectedRow());
-        PoblarTabla(modelo_alumno, galumnos);
+        //PoblarTabla(modelo_alumno, galumnos);
     }//GEN-LAST:event_jLabel8MouseClicked
 
     /**
@@ -522,7 +522,7 @@ public class Ventana_V2 extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     
-    
+    /*
     private void PoblarTabla(DefaultTableModel mod){
         
         int cont = mod.getRowCount();
@@ -553,5 +553,5 @@ public class Ventana_V2 extends javax.swing.JFrame {
             }
         }
     }
-    
+    */
 }
