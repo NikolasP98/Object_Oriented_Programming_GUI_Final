@@ -7,19 +7,23 @@ package paquete.clases;
 
 import java.time.Year;
 import java.util.Random;
-import java.util.Scanner;
-import paquete.interfaces.Caracteres;
-import static paquete.interfaces.Caracteres.*;
 import paquete.interfaces.Sueldo;
 
 /**
  *
  * @author Nikolas
  */
-public class Staff extends Persona implements Caracteres, Sueldo{
+public class Staff extends Persona implements Sueldo{
     private int tiempo, cur, totalHrs;
     private double sueldo;
     private int[] horas;
+
+    public Staff(String nombre, String distrito) {
+        super(nombre, distrito);
+    }
+    
+    
+    
     
     
     @Override
@@ -37,22 +41,4 @@ public class Staff extends Persona implements Caracteres, Sueldo{
         this.sueldo = this.totalHrs * pagoHora * 4.0;
     }
     
-    
-    
-    
-    @Override
-    public String VerInfo() {
-        return super.VerInfo() + "\nAños formando parte del Staff: " + this.tiempo +
-                "\nHoras semanales: " + this.totalHrs +
-                "\nSueldo mensual: " + this.sueldo; //To change body of generated methods, choose Tools | Templates.
-    }
-    
-        @Override
-    public void Iniciar() {
-        this.SolicitarNombre();
-        this.CalcularSueldo();
-        this.SolicitarDistrito();
-        this.GenerarCodigo();
-        //this.SolicitarHoras();
-    }
 }

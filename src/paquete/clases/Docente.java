@@ -21,10 +21,17 @@ public class Docente extends Persona implements Educacion, Sueldo{
     private int[] horas;
     
     
-    public Docente() {
+    public Docente(String nombre, String distrito, int cur) {
+        super(nombre, distrito);
+        this.cur = cur;
         this.cursos = new String[10];
         this.horas = new int[10];
     }
+    
+    
+    
+    
+    
     
     @Override
     public void GenerarCodigo() {
@@ -33,45 +40,9 @@ public class Docente extends Persona implements Educacion, Sueldo{
         this.tiempo = Year.now().getValue() - x;
         this.codigo = "P" + x + "" + (rand.nextInt(9999-1000+1)+1000);
     }
-
-    @Override
-    public void SolicitarCursos() {
-        Scanner sc = new Scanner(System.in);
-        int ver = 0;
-        
-        while(ver != 1){
-            System.out.println(sep);
-            
-            System.out.println("Ingrese número de cursos inscritos del Docente: ");
-            cur = sc.nextInt();
-            sc.nextLine();
-            
-            System.out.println(sep);
-            
-            for(int i=0; i<cur; i++){
-                System.out.println("Ingresar nombre de curso #" + (i+1) + ": ");
-                cursos[i] = sc.nextLine();
-            }
-            
-            String cad = "";
-            
-            for(int i=0; i<cur; i++){
-                cad += (i+1) + ". " + cursos[i] + "\n";
-            }
-            
-            System.out.println(sep);
-            System.out.println("Cursos ingresados: \n" + cad);
-            
-            System.out.println(sep);
-            
-            System.out.println("Es correcto? \n1. Sí \n2. No");
-            
-            ver = sc.nextInt();
-            sc.nextLine();
-        }
-        System.out.println(sep);
-    }
-
+    
+    
+    
     public void SolicitarHoras() {
         int ver, totHoras = 0;
         Random rand = new Random();
@@ -93,13 +64,13 @@ public class Docente extends Persona implements Educacion, Sueldo{
         
         System.out.println("Horas cargadas!");
         
-        System.out.println(sep);
+
         
         System.out.println("Desea ver las horas por curso del último año?\n1. Sí\n2. No");
         ver = sc.nextInt();
         
         if (ver == 1){
-            System.out.println(sep);
+
             
             String cad = "\tHrs semanales\n";
             
@@ -113,37 +84,17 @@ public class Docente extends Persona implements Educacion, Sueldo{
             
         }
         
-        System.out.println(sep);
+
     }
 
     @Override
     public void CalcularSueldo() {
         this.sueldo = this.totalHrs * pagoHora * 4.0;
     }
-    
-    
-    @Override
-    public String VerInfo() {
-        return super.VerInfo() + "\nAños siendo Docente: " + this.tiempo +
-                "\nHoras semanales: " + this.totalHrs +
-                "\nSueldo mensual: " + this.sueldo; //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
-    public void Iniciar(){
-        this.SolicitarNombre();
-        this.CalcularSueldo();
-        this.SolicitarDistrito();
-        this.GenerarCodigo();
-        this.SolicitarCursos();
-        this.SolicitarHoras();
-        
-        System.out.println(this.VerInfo());
+    public void SolicitarCursos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
-    
-    
     
 }

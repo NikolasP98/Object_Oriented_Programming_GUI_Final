@@ -5,20 +5,22 @@
  */
 package paquete.clases;
 
-import java.util.Scanner;
-import paquete.interfaces.Caracteres;
 
 /**
  *
  * @author L46374
  */
-public abstract class Persona implements Caracteres{
+public abstract class Persona{
     protected String nombre, codigo, distrito;
-    protected Universidad uni;
-    protected Thread t;
+    //protected int cur;
     
-    public Persona() {
+    //protected Thread t;
+
+    public Persona(String nombre, String distrito) {
+        this.nombre = nombre;
+        this.distrito = distrito;
     }
+    
 
     public String getNombre() {
         return nombre;
@@ -36,14 +38,6 @@ public abstract class Persona implements Caracteres{
         this.codigo = codigo;
     }
 
-    public Universidad getUni() {
-        return uni;
-    }
-
-    public void setUni(Universidad uni) {
-        this.uni = uni;
-    }
-
     public String getDistrito() {
         return distrito;
     }
@@ -53,55 +47,8 @@ public abstract class Persona implements Caracteres{
     }
     
     
-    //METODO SOLICITUD DE NOMBRE
-    public void SolicitarNombre(){
-        
-        Scanner sc = new Scanner(System.in);
-        int ver=2;
-        
-        while(ver != 1){
-            
-            System.out.println("Ingresar nombre: ");
-        
-            this.nombre = sc.nextLine();
-            
-            System.out.println(sep);
-            System.out.println("Nombre ingresado: " + this.nombre);
-            System.out.println("Es correcto? \n1. Sí \n2. No");
-            
-            ver = sc.nextInt();
-            sc.nextLine();
-            System.out.println(sep);
-        }
-    }
-    
-    //SOLICITAR DISTRITO DE RESIDENCIA
-    public void SolicitarDistrito(){
-        Scanner sc = new Scanner(System.in);
-        int ver=2;
-        
-        while(ver!=1){
-            
-            System.out.println("Ingresar distrito de residencia: ");
-        
-            this.distrito = sc.nextLine();
-            
-            System.out.println(sep);
-            System.out.println("Distrito ingresado: " + this.distrito);
-            System.out.println("Es correcto? \n1. Sí \n2. No");
-            
-            ver = sc.nextInt();
-            sc.nextLine();
-        }
-    } 
-    
     public abstract void GenerarCodigo();
-    public abstract void Iniciar();
     
-    public String VerInfo() {
-        return "Nombre: " + nombre + 
-                "\nCodigo: " + codigo + 
-                "\nDistrito: " + distrito + 
-                "\nUniversidad: Universidad de Lima"; //+ uni.getNombre();
-    }
+    
+    
 }
