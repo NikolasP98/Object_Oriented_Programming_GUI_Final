@@ -11,7 +11,9 @@ package paquete.interfaces;
  */
 public interface Sueldo {
     
-    double pagoHora = 30.5;
+    double pagoHora_Docente = 30.5, pagoHora_Staff = 28.5;
+    
+    void SolicitarHoras();
     void CalcularSueldo();
     
     

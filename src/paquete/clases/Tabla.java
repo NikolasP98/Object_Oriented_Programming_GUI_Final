@@ -28,10 +28,14 @@ public class Tabla extends DefaultTableModel{
             
             this.addColumn("# Cursos");
             this.addColumn("Total Horas");
+            this.addColumn("Sueldo Mensual");
             
         } else if (a.equalsIgnoreCase("Staff")){
             
-            
+            this.addColumn("Puesto");
+            this.addColumn("# Resp.");
+            this.addColumn("Horas");
+            this.addColumn("Sueldo");
             
         }
         

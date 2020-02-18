@@ -6,10 +6,9 @@
 package paquete.GUI;
 
 import javax.swing.table.DefaultTableModel;
-import paquete.clases.Alumno;
-import paquete.clases.Persona;
-import paquete.clases.Tabla_Data;
+import paquete.clases.*;
 import paquete.gestion.Gestion;
+import static paquete.interfaces.Sueldo.*;
 
 /**
  *
@@ -46,7 +45,15 @@ public class Datos extends javax.swing.JFrame {
         
         this.codigo_.setText(arreglo[fila].getCodigo());
         
-        this.tipo_usuario1.setText("Tipo de usuario: " + tipo);
+        
+        if(tipo.equalsIgnoreCase("Staff")){
+            this.tipo_usuario1.setText("Tipo de usuario: " + tipo + ": " + ((Staff)arreglo[fila]).getPuesto());
+            
+        } else {
+            this.tipo_usuario1.setText("Tipo de usuario: " + tipo);
+            
+        }
+        
         
         this.tiempo_enU.setText("Tiempo en la Universidad: " + String.valueOf(arreglo[fila].getTiempo()) + " Años");
         
@@ -55,7 +62,7 @@ public class Datos extends javax.swing.JFrame {
         
         //if(tipo.equalsIgnoreCase("Alumno")){
             this.Datos_Adicionales.setModel(tabla);
-            PoblarTabla(tabla, tipo);
+            PoblarTabla(tabla, tipo, fila);
         //}
     }
 
@@ -111,12 +118,12 @@ public class Datos extends javax.swing.JFrame {
         codigo_.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         codigo_.setText("Codigo Alumno");
 
-        tiempo_enU.setFont(new java.awt.Font("Franklin Gothic Book", 0, 14)); // NOI18N
+        tiempo_enU.setFont(new java.awt.Font("Franklin Gothic Book", 0, 12)); // NOI18N
         tiempo_enU.setForeground(new java.awt.Color(255, 255, 255));
         tiempo_enU.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         tiempo_enU.setText("Tiempo");
 
-        tipo_usuario1.setFont(new java.awt.Font("Franklin Gothic Book", 0, 14)); // NOI18N
+        tipo_usuario1.setFont(new java.awt.Font("Franklin Gothic Book", 0, 12)); // NOI18N
         tipo_usuario1.setForeground(new java.awt.Color(255, 255, 255));
         tipo_usuario1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         tipo_usuario1.setText("A/S/D");
@@ -125,16 +132,6 @@ public class Datos extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(tipo_usuario1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 354, Short.MAX_VALUE)
-                        .addComponent(tiempo_enU)
-                        .addGap(50, 50, 50))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,6 +143,18 @@ public class Datos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(codigo_)
                         .addGap(52, 52, 52))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(tipo_usuario1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tiempo_enU)
+                        .addGap(57, 57, 57))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(45, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,12 +166,12 @@ public class Datos extends javax.swing.JFrame {
                     .addComponent(codigo_)
                     .addComponent(nombre_))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tipo_usuario1)
-                    .addComponent(tiempo_enU))
-                .addGap(32, 32, 32))
+                    .addComponent(tiempo_enU)
+                    .addComponent(tipo_usuario1))
+                .addGap(36, 36, 36))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -225,7 +234,7 @@ public class Datos extends javax.swing.JFrame {
     private javax.swing.JLabel tipo_usuario1;
     // End of variables declaration//GEN-END:variables
 
-    private void PoblarTabla(DefaultTableModel mod, String abc){
+    private void PoblarTabla(DefaultTableModel mod, String abc, int fil){
         
         int cont = mod.getRowCount();
         
@@ -237,13 +246,14 @@ public class Datos extends javax.swing.JFrame {
         
         if(abc.equalsIgnoreCase("Alumno")){
             
-            String[] curs = ((Alumno)arreglo[fila]).getCursos();
-            int[][] not = ((Alumno)arreglo[fila]).getNotas();
-            double[] prom = ((Alumno)arreglo[fila]).getPromedios();
+            String[] curs = ((Alumno)arreglo[fil]).getCursos();
+            int[][] not = ((Alumno)arreglo[fil]).getNotas();
+            double[] prom = ((Alumno)arreglo[fil]).getPromedios();
 
             
             
-            for(int i=0; i<((Alumno)arreglo[fila]).getCur(); i++){
+            for(int i=0; i<((Alumno)arreglo[fil]).getCur(); i++){
+                
                 datos[0] = curs[i];
                 datos[1] = String.valueOf(not[i][0]);
                 datos[2] = String.valueOf(not[i][1]);
@@ -251,6 +261,42 @@ public class Datos extends javax.swing.JFrame {
                 
                 mod.addRow(datos);
             }
+        } else if(abc.equalsIgnoreCase("Docente")){
+            
+            String[] curs = ((Docente)arreglo[fila]).getCursos();
+            int[] hors = ((Docente)arreglo[fila]).getHoras();
+            
+            for(int i=0; i<((Docente)arreglo[fil]).getCur(); i++){
+                
+                datos[0] = curs[i];
+                datos[1] = String.valueOf(hors[i]);
+                
+                double sueld = hors[i] * pagoHora_Docente;
+                
+                datos[2] = String.valueOf(sueld);
+                
+                mod.addRow(datos);
+                
+            }
+            
+        } else if(abc.equalsIgnoreCase("Staff")){
+            
+            String[] resp = ((Staff)arreglo[fila]).getResponsabilidad();
+            int[] hors = ((Staff)arreglo[fila]).getHoras();
+            
+            for(int i=0; i<((Staff)arreglo[fil]).getResp(); i++){
+                
+                datos[0] = resp[i];
+                datos[1] = String.valueOf(hors[i]);
+                
+                double sueld = hors[i] * pagoHora_Staff;
+                
+                datos[2] = String.valueOf(sueld);
+                
+                mod.addRow(datos);
+                
+            }
+            
         }
         
     }

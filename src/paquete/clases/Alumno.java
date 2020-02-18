@@ -38,14 +38,6 @@ public class Alumno extends Persona implements Educacion{
         this.promedios = promedios;
     }
 
-    public int getTiempo() {
-        return tiempo;
-    }
-
-    public void setTiempo(int tiempo) {
-        this.tiempo = tiempo;
-    }
-
     public double getPromTotal() {
         return promTotal;
     }
@@ -54,9 +46,6 @@ public class Alumno extends Persona implements Educacion{
         this.promTotal = promTotal;
     }
     
-    
-    
-
     public int[][] getNotas() {
         return notas;
     }

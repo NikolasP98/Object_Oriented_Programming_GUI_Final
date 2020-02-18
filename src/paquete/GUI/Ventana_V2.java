@@ -46,6 +46,7 @@ public class Ventana_V2 extends javax.swing.JFrame {
 
         this.Tabla_Datos_Alumno.setModel(modelo_alumno);
         this.Tabla_Datos_Docente.setModel(modelo_docente);
+        this.Tabla_Datos_Staff.setModel(modelo_staff);
         
         
         
@@ -100,6 +101,18 @@ public class Ventana_V2 extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         distrito_docente = new javax.swing.JTextField();
         View_Docente = new javax.swing.JLabel();
+        Staff_Panel = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        Agregar_Staff = new javax.swing.JLabel();
+        Eliminar_Staff = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Tabla_Datos_Staff = new javax.swing.JTable();
+        jLabel16 = new javax.swing.JLabel();
+        nombre_staff = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        distrito_staff = new javax.swing.JTextField();
+        View_Staff = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TRABAJO_FINAL");
@@ -144,6 +157,11 @@ public class Ventana_V2 extends javax.swing.JFrame {
         Staff_Main_Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Staff.png"))); // NOI18N
         Staff_Main_Label.setText("  Staff");
         Staff_Main_Label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Staff_Main_Label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Staff_Main_LabelMouseClicked(evt);
+            }
+        });
 
         About_Main.setFont(new java.awt.Font("Franklin Gothic Book", 0, 14)); // NOI18N
         About_Main.setForeground(new java.awt.Color(255, 255, 255));
@@ -223,7 +241,7 @@ public class Ventana_V2 extends javax.swing.JFrame {
         jLabel2.setText("<html>Bienvenidos al gestor de personas.<br>\n<br>Aquí podrás gestionar información de los alumnos, docentes y staff de la Universidad de Lima.<br>\n<br>Toda la información ingresada estará a su disposición a través del menú a la izquierda.<br>\n<br>Tan solo elige una de las opciones a la izquierda para iniciar con el proceso de gestión de personas.\n</html>");
 
         jLabel3.setForeground(new java.awt.Color(155, 197, 225));
-        jLabel3.setText("Version 1.3 - beta @gestorversion1.3");
+        jLabel3.setText("Version 1.3 - alpha @gestorversion1.3");
 
         javax.swing.GroupLayout About_PanelLayout = new javax.swing.GroupLayout(About_Panel);
         About_Panel.setLayout(About_PanelLayout);
@@ -566,6 +584,162 @@ public class Ventana_V2 extends javax.swing.JFrame {
 
         CardLayout.add(Docente_Panel, "card3");
 
+        Staff_Panel.setBackground(new java.awt.Color(52, 60, 64));
+
+        jLabel14.setFont(new java.awt.Font("Franklin Gothic Book", 1, 36)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Gestión de Staff");
+
+        jLabel15.setFont(new java.awt.Font("Franklin Gothic Book", 0, 20)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Seleccionar la opción que desee gestionar.");
+
+        Agregar_Staff.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Agregar_Staff.setForeground(new java.awt.Color(255, 255, 255));
+        Agregar_Staff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Agregar.png"))); // NOI18N
+        Agregar_Staff.setText("  Agregar Staff");
+        Agregar_Staff.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Agregar_Staff.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Agregar_StaffMouseClicked(evt);
+            }
+        });
+
+        Eliminar_Staff.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Eliminar_Staff.setForeground(new java.awt.Color(255, 255, 255));
+        Eliminar_Staff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Trash.png"))); // NOI18N
+        Eliminar_Staff.setText("  Eliminar Staff");
+        Eliminar_Staff.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Eliminar_Staff.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Eliminar_StaffMouseClicked(evt);
+            }
+        });
+
+        Tabla_Datos_Staff.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane3.setViewportView(Tabla_Datos_Staff);
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel16.setText("Nombre:");
+
+        nombre_staff.setBackground(new java.awt.Color(52, 60, 64));
+        nombre_staff.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombre_staff.setForeground(new java.awt.Color(255, 255, 255));
+        nombre_staff.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        nombre_staff.setCaretColor(new java.awt.Color(255, 255, 255));
+        nombre_staff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombre_staffActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel17.setText("Distrito:");
+
+        distrito_staff.setBackground(new java.awt.Color(52, 60, 64));
+        distrito_staff.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        distrito_staff.setForeground(new java.awt.Color(255, 255, 255));
+        distrito_staff.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        distrito_staff.setCaretColor(new java.awt.Color(255, 255, 255));
+        distrito_staff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                distrito_staffActionPerformed(evt);
+            }
+        });
+
+        View_Staff.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        View_Staff.setForeground(new java.awt.Color(255, 255, 255));
+        View_Staff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Ver.png"))); // NOI18N
+        View_Staff.setText("Ver Detalle");
+        View_Staff.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        View_Staff.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                View_StaffMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Staff_PanelLayout = new javax.swing.GroupLayout(Staff_Panel);
+        Staff_Panel.setLayout(Staff_PanelLayout);
+        Staff_PanelLayout.setHorizontalGroup(
+            Staff_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Staff_PanelLayout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(Staff_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Staff_PanelLayout.createSequentialGroup()
+                        .addGroup(Staff_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel14))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Staff_PanelLayout.createSequentialGroup()
+                        .addGroup(Staff_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(Staff_PanelLayout.createSequentialGroup()
+                                .addGroup(Staff_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Eliminar_Staff)
+                                    .addComponent(Agregar_Staff))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE))
+                            .addGroup(Staff_PanelLayout.createSequentialGroup()
+                                .addGroup(Staff_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(Staff_PanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel16)
+                                        .addGap(7, 7, 7))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Staff_PanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                .addGroup(Staff_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombre_staff, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                                    .addComponent(distrito_staff))
+                                .addGap(32, 32, 32)))
+                        .addGroup(Staff_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(View_Staff)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35))))
+        );
+        Staff_PanelLayout.setVerticalGroup(
+            Staff_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Staff_PanelLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addGroup(Staff_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(nombre_staff))
+                .addGap(15, 15, 15)
+                .addGroup(Staff_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(distrito_staff))
+                .addGap(37, 37, 37)
+                .addComponent(Agregar_Staff)
+                .addGap(18, 18, 18)
+                .addComponent(Eliminar_Staff)
+                .addGap(315, 315, 315))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Staff_PanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(View_Staff)
+                .addGap(94, 94, 94))
+        );
+
+        CardLayout.add(Staff_Panel, "card3");
+
         jSplitPane1.setRightComponent(CardLayout);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -603,7 +777,10 @@ public class Ventana_V2 extends javax.swing.JFrame {
     private void About_MainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_About_MainMouseClicked
         // TODO add your handling code here:
         this.About_Panel.setVisible(true);
+        
         this.Alumno_Panel.setVisible(false);
+        this.Staff_Panel.setVisible(false);
+        this.Docente_Panel.setVisible(false);
         
         
     }//GEN-LAST:event_About_MainMouseClicked
@@ -618,21 +795,28 @@ public class Ventana_V2 extends javax.swing.JFrame {
         String nom = this.nombre_alumno.getText();
         String distrito = this.distrito_alumno.getText();
         
-        try{
-            int cur = Integer.parseInt(JOptionPane.showInputDialog("Cuantos cursos matriculados?"));
-
-            Alumno alum = new Alumno(nom, distrito, cur);
-            alum.GenerarCodigo();
-
-            System.out.println(alum.getCodigo());
-
-            alum.SolicitarNotas();
-
-            galumnos.Agregar(alum);
-
-            PoblarTabla(modelo_alumno, galumnos, "Alumno");
-        } catch (Exception e) {}
+        if("".equals(nom) || "".equals(distrito)){
+            
+            JOptionPane.showMessageDialog(null, "Por favor completar los campos vacíos.");
+            
+        } else {
         
+            try{
+                int cur = Integer.parseInt(JOptionPane.showInputDialog("Cuantos cursos matriculados?"));
+
+                Alumno alum = new Alumno(nom, distrito, cur);
+                alum.GenerarCodigo();
+
+                System.out.println(alum.getCodigo());
+
+                alum.SolicitarNotas();
+
+                galumnos.Agregar(alum);
+
+                PoblarTabla(modelo_alumno, galumnos, "Alumno");
+            } catch (Exception e) {}
+            
+        }
     }//GEN-LAST:event_Agregar_AlumnoMouseClicked
 
     private void distrito_alumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_distrito_alumnoActionPerformed
@@ -669,14 +853,52 @@ public class Ventana_V2 extends javax.swing.JFrame {
     
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
+        
+        this.About_Panel.setVisible(true);
+        
+        this.Alumno_Panel.setVisible(false);
+        this.Staff_Panel.setVisible(false);
+        this.Docente_Panel.setVisible(false);
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void Agregar_DocenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Agregar_DocenteMouseClicked
         // TODO add your handling code here:
+        String nom = this.nombre_docente.getText();
+        String distrito = this.distrito_docente.getText();
+        
+        if("".equals(nom) || "".equals(distrito)){
+            
+            JOptionPane.showMessageDialog(null, "Por favor completar los campos vacíos.");
+            
+        } else {
+        
+            try{
+                int cur = Integer.parseInt(JOptionPane.showInputDialog("Cuantos cursos enseñará?"));
+
+                Docente doc = new Docente(nom, distrito, cur);
+                doc.GenerarCodigo();
+
+                System.out.println(doc.getCodigo());
+
+                doc.SolicitarHoras();
+                
+                doc.CalcularSueldo();
+                
+                gprofes.Agregar(doc);
+
+                PoblarTabla(modelo_docente, gprofes, "Docente");
+            } catch (Exception e) {}
+            
+        }
     }//GEN-LAST:event_Agregar_DocenteMouseClicked
 
     private void Eliminar_DocenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Eliminar_DocenteMouseClicked
         // TODO add your handling code here:
+        gprofes.Eliminar(Tabla_Datos_Docente.getSelectedRow());
+        
+        PoblarTabla(modelo_docente, gprofes, "Docentes");
+        
+        
     }//GEN-LAST:event_Eliminar_DocenteMouseClicked
 
     private void nombre_docenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre_docenteActionPerformed
@@ -689,6 +911,21 @@ public class Ventana_V2 extends javax.swing.JFrame {
 
     private void View_DocenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_View_DocenteMouseClicked
         // TODO add your handling code here:
+        try{
+            int selec = this.Tabla_Datos_Docente.getSelectedRow();
+            
+            if(this.Tabla_Datos_Docente.getRowCount()  > 0 && selec >= 0){
+                
+                Datos datos_docente = new Datos(gprofes, "Docente", selec);
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Debe haber al menos un docente seleccionado.");
+            }
+            
+        } catch(Exception e){
+            System.out.println("Error en cargar datos extra_Docente");
+        }
+        
     }//GEN-LAST:event_View_DocenteMouseClicked
 
     private void Doc_Main_LabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Doc_Main_LabelMouseClicked
@@ -696,12 +933,88 @@ public class Ventana_V2 extends javax.swing.JFrame {
         
         this.Alumno_Panel.setVisible(false);
         this.About_Panel.setVisible(false);
+        this.Staff_Panel.setVisible(false);
         
         this.Docente_Panel.setVisible(true);
         
         
         
     }//GEN-LAST:event_Doc_Main_LabelMouseClicked
+
+    private void Agregar_StaffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Agregar_StaffMouseClicked
+        // TODO add your handling code here:
+        String nom = this.nombre_staff.getText();
+        String distrito = this.distrito_staff.getText();
+        
+        if("".equals(nom) || "".equals(distrito)){
+            
+            JOptionPane.showMessageDialog(null, "Por favor completar los campos vacíos.");
+            
+        } else {
+            
+            try{
+                
+                String psto = JOptionPane.showInputDialog("Ingresar puesto");
+                
+                int cur = Integer.parseInt(JOptionPane.showInputDialog("Cuántas responsabilidades tiene?"));
+
+                Staff staff = new Staff(nom, distrito, psto, cur);
+                staff.GenerarCodigo();
+
+                System.out.println(staff.getCodigo());
+
+                staff.SolicitarHoras();
+                
+                staff.CalcularSueldo();
+                
+                gstaff.Agregar(staff);
+
+                PoblarTabla(modelo_staff, gstaff, "Staff");
+            } catch (Exception e) {}
+            
+        }
+    }//GEN-LAST:event_Agregar_StaffMouseClicked
+
+    private void Eliminar_StaffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Eliminar_StaffMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Eliminar_StaffMouseClicked
+
+    private void nombre_staffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre_staffActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombre_staffActionPerformed
+
+    private void distrito_staffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_distrito_staffActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_distrito_staffActionPerformed
+
+    private void View_StaffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_View_StaffMouseClicked
+        // TODO add your handling code here:
+        try{
+            int selec = this.Tabla_Datos_Staff.getSelectedRow();
+            
+            if(this.Tabla_Datos_Staff.getRowCount()  > 0 && selec >= 0){
+                
+                Datos datos_docente = new Datos(gstaff, "Staff", selec);
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Debe haber al menos un staff seleccionado.");
+            }
+            
+        } catch(Exception e){
+            System.out.println("Error en cargar datos extra_Staff");
+        }
+    }//GEN-LAST:event_View_StaffMouseClicked
+
+    private void Staff_Main_LabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Staff_Main_LabelMouseClicked
+        // TODO add your handling code here:
+        this.About_Panel.setVisible(false);
+        this.Alumno_Panel.setVisible(false);
+        
+        this.Staff_Panel.setVisible(true);
+        
+        this.Docente_Panel.setVisible(false);
+        
+    }//GEN-LAST:event_Staff_Main_LabelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -743,6 +1056,7 @@ public class Ventana_V2 extends javax.swing.JFrame {
     private javax.swing.JPanel About_Panel;
     private javax.swing.JLabel Agregar_Alumno;
     private javax.swing.JLabel Agregar_Docente;
+    private javax.swing.JLabel Agregar_Staff;
     private javax.swing.JLabel Alum_Main_Label;
     private javax.swing.JPanel Alumno_Panel;
     private javax.swing.JPanel CardLayout;
@@ -750,19 +1064,28 @@ public class Ventana_V2 extends javax.swing.JFrame {
     private javax.swing.JPanel Docente_Panel;
     private javax.swing.JLabel Eliminar_Alumno;
     private javax.swing.JLabel Eliminar_Docente;
+    private javax.swing.JLabel Eliminar_Staff;
     private javax.swing.JPanel Side_Menu;
     private javax.swing.JLabel Staff_Main_Label;
+    private javax.swing.JPanel Staff_Panel;
     private javax.swing.JTable Tabla_Datos_Alumno;
     private javax.swing.JTable Tabla_Datos_Docente;
+    private javax.swing.JTable Tabla_Datos_Staff;
     private javax.swing.JLabel View_Alumno;
     private javax.swing.JLabel View_Docente;
+    private javax.swing.JLabel View_Staff;
     private javax.swing.JTextField distrito_alumno;
     private javax.swing.JTextField distrito_docente;
+    private javax.swing.JTextField distrito_staff;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -773,9 +1096,11 @@ public class Ventana_V2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextField nombre_alumno;
     private javax.swing.JTextField nombre_docente;
+    private javax.swing.JTextField nombre_staff;
     // End of variables declaration//GEN-END:variables
 
     
@@ -803,6 +1128,19 @@ public class Ventana_V2 extends javax.swing.JFrame {
                     datos[3] = String.valueOf(((Alumno)arreglo[i]).getCur());
                     datos[4] = String.valueOf(((Alumno)arreglo[i]).getPromTotal());
 
+                } else if(abc.equalsIgnoreCase("Docente")){
+                    
+                    datos[3] = String.valueOf(((Docente)arreglo[i]).getCur());
+                    datos[4] = String.valueOf(((Docente)arreglo[i]).getTotalHrs());
+                    datos[5] = String.valueOf(((Docente)arreglo[i]).getSueldo());
+                    
+                } else if(abc.equalsIgnoreCase("Staff")){
+                    
+                    datos[3] = ((Staff)arreglo[i]).getPuesto();
+                    datos[4] = String.valueOf(((Staff)arreglo[i]).getResp());
+                    datos[5] = String.valueOf(((Staff)arreglo[i]).getTotalHrs());
+                    datos[6] = String.valueOf(((Staff)arreglo[i]).getSueldo());
+                    
                 }
 
                 mod.addRow(datos);

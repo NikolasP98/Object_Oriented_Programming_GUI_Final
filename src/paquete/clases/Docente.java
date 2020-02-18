@@ -7,7 +7,7 @@ package paquete.clases;
 
 import java.time.Year;
 import java.util.Random;
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 import paquete.interfaces.*;
 
 /**
@@ -27,6 +27,46 @@ public class Docente extends Persona implements Educacion, Sueldo{
         this.cursos = new String[10];
         this.horas = new int[10];
     }
+
+    public int getCur() {
+        return cur;
+    }
+
+    public void setCur(int cur) {
+        this.cur = cur;
+    }
+
+    public int getTotalHrs() {
+        return totalHrs;
+    }
+
+    public void setTotalHrs(int totalHrs) {
+        this.totalHrs = totalHrs;
+    }
+
+    public double getSueldo() {
+        return sueldo;
+    }
+
+    public void setSueldo(double sueldo) {
+        this.sueldo = sueldo;
+    }
+
+    public String[] getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(String[] cursos) {
+        this.cursos = cursos;
+    }
+
+    public int[] getHoras() {
+        return horas;
+    }
+
+    public void setHoras(int[] horas) {
+        this.horas = horas;
+    }
     
     
     
@@ -43,58 +83,33 @@ public class Docente extends Persona implements Educacion, Sueldo{
     
     
     
+    @Override
     public void SolicitarHoras() {
-        int ver, totHoras = 0;
-        Random rand = new Random();
-        Scanner sc = new Scanner(System.in);
         
-        System.out.println("Recuperando horas totales...");
+        Random rand = new Random();
+        int totHoras = 0;
+        
         
         for(int i=0; i<cur; i++){
-                horas[i] = rand.nextInt(7)+2;
-                
-                totHoras += horas[i];
+            
+            cursos[i] = JOptionPane.showInputDialog("Ingresar nombre de curso #" + (i+1));
+            
+            horas[i] = rand.nextInt(7)+2;
+
+            totHoras += horas[i];
         }
         
         this.totalHrs = totHoras;
-        
-        try {
-                Thread.sleep(2500);
-            } catch (InterruptedException e) {}
-        
-        System.out.println("Horas cargadas!");
-        
-
-        
-        System.out.println("Desea ver las horas por curso del último año?\n1. Sí\n2. No");
-        ver = sc.nextInt();
-        
-        if (ver == 1){
-
-            
-            String cad = "\tHrs semanales\n";
-            
-            for(int i=0; i<cur; i++){
-                cad += cursos[i] + "\t|\t" + horas[i] + "\n";
-            }
-            
-            cad += "TOTAL\t|\t" + totalHrs;
-            
-            System.out.println(cad);
-            
-        }
-        
 
     }
 
     @Override
     public void CalcularSueldo() {
-        this.sueldo = totalHrs * pagoHora * 4.0;
+        this.sueldo = totalHrs * pagoHora_Docente * 4.0;
     }
 
     @Override
     public void SolicitarCursos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

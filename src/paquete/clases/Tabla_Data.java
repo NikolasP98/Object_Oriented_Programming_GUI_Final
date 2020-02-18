@@ -23,12 +23,17 @@ public class Tabla_Data extends DefaultTableModel{
             this.addColumn("Promedio");
             
         } else if(a.equals("Docente")){
+            
             this.addColumn("Curso");
-            this.addColumn("Horas Ciclo 1");
-            this.addColumn("Horas Ciclo 2");
+            this.addColumn("Horas");
+            this.addColumn("Sueldo Curso");
         
-        
-        
+        } else if(a.equals("Staff")){
+            
+            this.addColumn("Responsabilidad");
+            this.addColumn("Horas");
+            this.addColumn("Sueldo Resp.");
+            
         }
     }
 }
