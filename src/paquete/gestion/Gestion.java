@@ -12,38 +12,25 @@ import paquete.clases.*;
  *
  * @author Nikolas
  */
-public class Gestion_Alumno {
-    private Alumno[] arreglo;
-    private int contador, tipo;
+public class Gestion {
+    private Persona[] arreglo;
+    private int contador;
     
-    /*
-    Tipo 1: alumno
-    Tipo 2: docente
-    Tipo 3: staff
     
-    */
-    
-    public Gestion_Alumno() {
-        arreglo = new Alumno[100];
+    public Gestion() {
+        arreglo = new Persona[100];
         contador = 0;
     }
 
-    public int getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
-    }
 
     
     
     
-    public Alumno[] getArreglo() {
+    public Persona[] getArreglo() {
         return arreglo;
     }
 
-    public void setArreglo(Alumno[] arreglo) {
+    public void setArreglo(Persona[] arreglo) {
         this.arreglo = arreglo;
     }
 
@@ -57,7 +44,7 @@ public class Gestion_Alumno {
 
     
         
-    public void Agregar(Alumno a){
+    public void Agregar(Persona a){
         
         if(arreglo.length > contador){
             

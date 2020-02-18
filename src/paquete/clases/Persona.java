@@ -12,7 +12,7 @@ package paquete.clases;
  */
 public abstract class Persona{
     protected String nombre, codigo, distrito;
-    //protected int cur;
+    protected int tiempo;
     
     //protected Thread t;
 
@@ -20,6 +20,15 @@ public abstract class Persona{
         this.nombre = nombre;
         this.distrito = distrito;
     }
+
+    public int getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(int tiempo) {
+        this.tiempo = tiempo;
+    }
+    
     
 
     public String getNombre() {

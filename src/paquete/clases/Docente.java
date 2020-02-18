@@ -15,7 +15,7 @@ import paquete.interfaces.*;
  * @author Nikolas
  */
 public class Docente extends Persona implements Educacion, Sueldo{
-    private int tiempo, cur, totalHrs;
+    private int  cur, totalHrs;
     private double sueldo;
     private String[] cursos;
     private int[] horas;
@@ -89,7 +89,7 @@ public class Docente extends Persona implements Educacion, Sueldo{
 
     @Override
     public void CalcularSueldo() {
-        this.sueldo = this.totalHrs * pagoHora * 4.0;
+        this.sueldo = totalHrs * pagoHora * 4.0;
     }
 
     @Override

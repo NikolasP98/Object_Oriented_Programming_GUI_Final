@@ -6,8 +6,8 @@
 package paquete.GUI;
 
 import paquete.clases.*;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import paquete.gestion.*;
 
 /**
@@ -16,11 +16,11 @@ import paquete.gestion.*;
  */
 public class Ventana_V2 extends javax.swing.JFrame {
     
-    DefaultTableModel modelo_alumno;
-    DefaultTableModel modelo_docente;
-    DefaultTableModel modelo_staff;
+    Tabla modelo_alumno;
+    Tabla modelo_docente;
+    Tabla modelo_staff;
     
-    Gestion_Alumno galumnos; //gprofes, gstaff;
+    Gestion galumnos, gprofes, gstaff;
     Loading load = new Loading();
     
     /**
@@ -28,34 +28,24 @@ public class Ventana_V2 extends javax.swing.JFrame {
      */
     public Ventana_V2() {
         
-        modelo_alumno = new DefaultTableModel();
-        modelo_docente = new DefaultTableModel();
-        modelo_staff = new DefaultTableModel();
+        modelo_alumno = new Tabla("Alumno");
+        modelo_docente = new Tabla("Docente");
+        modelo_staff = new Tabla("Staff");
         
-        galumnos = new Gestion_Alumno();
-        //gprofes = new Gestion_Docente();
-        //gstaff = new Gestion_Staff();
+        galumnos = new Gestion();
+        gprofes = new Gestion();
+        gstaff = new Gestion();
         
         load.LoadingScreen("Iniciando Aplicación", 40);
         
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        //SetIcon();
         
-        //Tabla Alumnos
-        
-        
-        
-        modelo_alumno.addColumn("Nombre");
-        modelo_alumno.addColumn("Codigo");
-        modelo_alumno.addColumn("Distrito");
-        modelo_alumno.addColumn("# Cursos");
-        modelo_alumno.addColumn("Promedio");
-        
-        
-        this.jTable1.setModel(modelo_alumno);
-        
+        //Tablas
+
+        this.Tabla_Datos_Alumno.setModel(modelo_alumno);
+        this.Tabla_Datos_Docente.setModel(modelo_docente);
         
         
         
@@ -89,14 +79,27 @@ public class Ventana_V2 extends javax.swing.JFrame {
         Alumno_Panel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        Agregar_Alumno = new javax.swing.JLabel();
+        Eliminar_Alumno = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabla_Datos_Alumno = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         nombre_alumno = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         distrito_alumno = new javax.swing.JTextField();
+        View_Alumno = new javax.swing.JLabel();
+        Docente_Panel = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        Agregar_Docente = new javax.swing.JLabel();
+        Eliminar_Docente = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Tabla_Datos_Docente = new javax.swing.JTable();
+        jLabel12 = new javax.swing.JLabel();
+        nombre_docente = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        distrito_docente = new javax.swing.JTextField();
+        View_Docente = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TRABAJO_FINAL");
@@ -130,6 +133,11 @@ public class Ventana_V2 extends javax.swing.JFrame {
         Doc_Main_Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Teacher.png"))); // NOI18N
         Doc_Main_Label.setText("  Docentes");
         Doc_Main_Label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Doc_Main_Label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Doc_Main_LabelMouseClicked(evt);
+            }
+        });
 
         Staff_Main_Label.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         Staff_Main_Label.setForeground(new java.awt.Color(255, 255, 255));
@@ -150,6 +158,12 @@ public class Ventana_V2 extends javax.swing.JFrame {
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Logo.png"))); // NOI18N
         jLabel10.setAlignmentX(0.5F);
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout Side_MenuLayout = new javax.swing.GroupLayout(Side_Menu);
         Side_Menu.setLayout(Side_MenuLayout);
@@ -252,29 +266,29 @@ public class Ventana_V2 extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Seleccionar la opción que desee gestionar.");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Agregar.png"))); // NOI18N
-        jLabel7.setText("  Agregar Alumno");
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+        Agregar_Alumno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Agregar_Alumno.setForeground(new java.awt.Color(255, 255, 255));
+        Agregar_Alumno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Agregar.png"))); // NOI18N
+        Agregar_Alumno.setText("  Agregar Alumno");
+        Agregar_Alumno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Agregar_Alumno.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel7MouseClicked(evt);
+                Agregar_AlumnoMouseClicked(evt);
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Eliminar.png"))); // NOI18N
-        jLabel8.setText("  Eliminar Alumno");
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+        Eliminar_Alumno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Eliminar_Alumno.setForeground(new java.awt.Color(255, 255, 255));
+        Eliminar_Alumno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Trash.png"))); // NOI18N
+        Eliminar_Alumno.setText("  Eliminar Alumno");
+        Eliminar_Alumno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Eliminar_Alumno.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel8MouseClicked(evt);
+                Eliminar_AlumnoMouseClicked(evt);
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla_Datos_Alumno.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -285,7 +299,7 @@ public class Ventana_V2 extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Tabla_Datos_Alumno);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -319,6 +333,17 @@ public class Ventana_V2 extends javax.swing.JFrame {
             }
         });
 
+        View_Alumno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        View_Alumno.setForeground(new java.awt.Color(255, 255, 255));
+        View_Alumno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Ver.png"))); // NOI18N
+        View_Alumno.setText("Ver Detalle");
+        View_Alumno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        View_Alumno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                View_AlumnoMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout Alumno_PanelLayout = new javax.swing.GroupLayout(Alumno_Panel);
         Alumno_Panel.setLayout(Alumno_PanelLayout);
         Alumno_PanelLayout.setHorizontalGroup(
@@ -331,14 +356,14 @@ public class Ventana_V2 extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel6))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(Alumno_PanelLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Alumno_PanelLayout.createSequentialGroup()
                         .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(Alumno_PanelLayout.createSequentialGroup()
                                 .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7))
+                                    .addComponent(Eliminar_Alumno)
+                                    .addComponent(Agregar_Alumno))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Alumno_PanelLayout.createSequentialGroup()
+                            .addGroup(Alumno_PanelLayout.createSequentialGroup()
                                 .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(Alumno_PanelLayout.createSequentialGroup()
                                         .addComponent(jLabel9)
@@ -350,7 +375,9 @@ public class Ventana_V2 extends javax.swing.JFrame {
                                     .addComponent(nombre_alumno, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                                     .addComponent(distrito_alumno))
                                 .addGap(32, 32, 32)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(View_Alumno)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35))))
         );
         Alumno_PanelLayout.setVerticalGroup(
@@ -360,28 +387,184 @@ public class Ventana_V2 extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
-                .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Alumno_PanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(nombre_alumno))
-                        .addGap(15, 15, 15)
-                        .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(distrito_alumno))
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel8)
-                        .addGap(221, 221, 221))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Alumno_PanelLayout.createSequentialGroup()
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(nombre_alumno))
+                .addGap(15, 15, 15)
+                .addGroup(Alumno_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(distrito_alumno))
+                .addGap(37, 37, 37)
+                .addComponent(Agregar_Alumno)
+                .addGap(18, 18, 18)
+                .addComponent(Eliminar_Alumno)
+                .addGap(315, 315, 315))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Alumno_PanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(View_Alumno)
                 .addGap(94, 94, 94))
         );
 
         CardLayout.add(Alumno_Panel, "card3");
+
+        Docente_Panel.setBackground(new java.awt.Color(52, 60, 64));
+
+        jLabel7.setFont(new java.awt.Font("Franklin Gothic Book", 1, 36)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Gestión de Docentes");
+
+        jLabel8.setFont(new java.awt.Font("Franklin Gothic Book", 0, 20)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Seleccionar la opción que desee gestionar.");
+
+        Agregar_Docente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Agregar_Docente.setForeground(new java.awt.Color(255, 255, 255));
+        Agregar_Docente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Agregar.png"))); // NOI18N
+        Agregar_Docente.setText("  Agregar Docente");
+        Agregar_Docente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Agregar_Docente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Agregar_DocenteMouseClicked(evt);
+            }
+        });
+
+        Eliminar_Docente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Eliminar_Docente.setForeground(new java.awt.Color(255, 255, 255));
+        Eliminar_Docente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Trash.png"))); // NOI18N
+        Eliminar_Docente.setText("  Eliminar Docente");
+        Eliminar_Docente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Eliminar_Docente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Eliminar_DocenteMouseClicked(evt);
+            }
+        });
+
+        Tabla_Datos_Docente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(Tabla_Datos_Docente);
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel12.setText("Nombre:");
+
+        nombre_docente.setBackground(new java.awt.Color(52, 60, 64));
+        nombre_docente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombre_docente.setForeground(new java.awt.Color(255, 255, 255));
+        nombre_docente.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        nombre_docente.setCaretColor(new java.awt.Color(255, 255, 255));
+        nombre_docente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombre_docenteActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel13.setText("Distrito:");
+
+        distrito_docente.setBackground(new java.awt.Color(52, 60, 64));
+        distrito_docente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        distrito_docente.setForeground(new java.awt.Color(255, 255, 255));
+        distrito_docente.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        distrito_docente.setCaretColor(new java.awt.Color(255, 255, 255));
+        distrito_docente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                distrito_docenteActionPerformed(evt);
+            }
+        });
+
+        View_Docente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        View_Docente.setForeground(new java.awt.Color(255, 255, 255));
+        View_Docente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paquete/recursos/Ver.png"))); // NOI18N
+        View_Docente.setText("Ver Detalle");
+        View_Docente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        View_Docente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                View_DocenteMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Docente_PanelLayout = new javax.swing.GroupLayout(Docente_Panel);
+        Docente_Panel.setLayout(Docente_PanelLayout);
+        Docente_PanelLayout.setHorizontalGroup(
+            Docente_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Docente_PanelLayout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(Docente_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Docente_PanelLayout.createSequentialGroup()
+                        .addGroup(Docente_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Docente_PanelLayout.createSequentialGroup()
+                        .addGroup(Docente_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(Docente_PanelLayout.createSequentialGroup()
+                                .addGroup(Docente_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Eliminar_Docente)
+                                    .addComponent(Agregar_Docente))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE))
+                            .addGroup(Docente_PanelLayout.createSequentialGroup()
+                                .addGroup(Docente_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(Docente_PanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addGap(7, 7, 7))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Docente_PanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                .addGroup(Docente_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombre_docente, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                                    .addComponent(distrito_docente))
+                                .addGap(32, 32, 32)))
+                        .addGroup(Docente_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(View_Docente)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35))))
+        );
+        Docente_PanelLayout.setVerticalGroup(
+            Docente_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Docente_PanelLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addGroup(Docente_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(nombre_docente))
+                .addGap(15, 15, 15)
+                .addGroup(Docente_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(distrito_docente))
+                .addGap(37, 37, 37)
+                .addComponent(Agregar_Docente)
+                .addGap(18, 18, 18)
+                .addComponent(Eliminar_Docente)
+                .addGap(315, 315, 315))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Docente_PanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(View_Docente)
+                .addGap(94, 94, 94))
+        );
+
+        CardLayout.add(Docente_Panel, "card3");
 
         jSplitPane1.setRightComponent(CardLayout);
 
@@ -404,6 +587,7 @@ public class Ventana_V2 extends javax.swing.JFrame {
         
         this.Alumno_Panel.setVisible(true);
         this.About_Panel.setVisible(false);
+        this.Docente_Panel.setVisible(false);
         
 
         
@@ -428,36 +612,96 @@ public class Ventana_V2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nombre_alumnoActionPerformed
 
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+    private void Agregar_AlumnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Agregar_AlumnoMouseClicked
         // TODO add your handling code here:
         
         String nom = this.nombre_alumno.getText();
         String distrito = this.distrito_alumno.getText();
-        int cur = Integer.parseInt(JOptionPane.showInputDialog("Cuantos cursos matriculados?"));
         
-        Alumno alum = new Alumno(nom, distrito, cur);
-        alum.GenerarCodigo();
+        try{
+            int cur = Integer.parseInt(JOptionPane.showInputDialog("Cuantos cursos matriculados?"));
+
+            Alumno alum = new Alumno(nom, distrito, cur);
+            alum.GenerarCodigo();
+
+            System.out.println(alum.getCodigo());
+
+            alum.SolicitarNotas();
+
+            galumnos.Agregar(alum);
+
+            PoblarTabla(modelo_alumno, galumnos, "Alumno");
+        } catch (Exception e) {}
         
-        System.out.println(alum.getCodigo());
-        
-        alum.SolicitarNotas();
-        
-        galumnos.Agregar(alum);
-        
-        //PoblarTabla(modelo_alumno, galumnos);
-        
-    }//GEN-LAST:event_jLabel7MouseClicked
+    }//GEN-LAST:event_Agregar_AlumnoMouseClicked
 
     private void distrito_alumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_distrito_alumnoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_distrito_alumnoActionPerformed
 
-    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+    private void Eliminar_AlumnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Eliminar_AlumnoMouseClicked
         // TODO add your handling code here:
         
-        galumnos.Eliminar(jTable1.getSelectedRow());
-        //PoblarTabla(modelo_alumno, galumnos);
-    }//GEN-LAST:event_jLabel8MouseClicked
+        galumnos.Eliminar(Tabla_Datos_Alumno.getSelectedRow());
+        
+        PoblarTabla(modelo_alumno, galumnos, "Alumno");
+    }//GEN-LAST:event_Eliminar_AlumnoMouseClicked
+
+    
+    
+    private void View_AlumnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_View_AlumnoMouseClicked
+        // TODO add your handling code here:
+        try{
+            int selec = this.Tabla_Datos_Alumno.getSelectedRow();
+            
+            if(this.Tabla_Datos_Alumno.getRowCount()  > 0 && selec >= 0){
+                
+                Datos datos_alum = new Datos(galumnos, "Alumno", selec);
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Debe haber al menos un alumno seleccionado.");
+            }
+            
+        } catch(Exception e){}
+    }//GEN-LAST:event_View_AlumnoMouseClicked
+
+    
+    
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void Agregar_DocenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Agregar_DocenteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Agregar_DocenteMouseClicked
+
+    private void Eliminar_DocenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Eliminar_DocenteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Eliminar_DocenteMouseClicked
+
+    private void nombre_docenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre_docenteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombre_docenteActionPerformed
+
+    private void distrito_docenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_distrito_docenteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_distrito_docenteActionPerformed
+
+    private void View_DocenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_View_DocenteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_View_DocenteMouseClicked
+
+    private void Doc_Main_LabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Doc_Main_LabelMouseClicked
+        // TODO add your handling code here:
+        
+        this.Alumno_Panel.setVisible(false);
+        this.About_Panel.setVisible(false);
+        
+        this.Docente_Panel.setVisible(true);
+        
+        
+        
+    }//GEN-LAST:event_Doc_Main_LabelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -497,16 +741,28 @@ public class Ventana_V2 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel About_Main;
     private javax.swing.JPanel About_Panel;
+    private javax.swing.JLabel Agregar_Alumno;
+    private javax.swing.JLabel Agregar_Docente;
     private javax.swing.JLabel Alum_Main_Label;
     private javax.swing.JPanel Alumno_Panel;
     private javax.swing.JPanel CardLayout;
     private javax.swing.JLabel Doc_Main_Label;
+    private javax.swing.JPanel Docente_Panel;
+    private javax.swing.JLabel Eliminar_Alumno;
+    private javax.swing.JLabel Eliminar_Docente;
     private javax.swing.JPanel Side_Menu;
     private javax.swing.JLabel Staff_Main_Label;
+    private javax.swing.JTable Tabla_Datos_Alumno;
+    private javax.swing.JTable Tabla_Datos_Docente;
+    private javax.swing.JLabel View_Alumno;
+    private javax.swing.JLabel View_Docente;
     private javax.swing.JTextField distrito_alumno;
+    private javax.swing.JTextField distrito_docente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -516,14 +772,15 @@ public class Ventana_V2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField nombre_alumno;
+    private javax.swing.JTextField nombre_docente;
     // End of variables declaration//GEN-END:variables
 
     
-    /*
-    private void PoblarTabla(DefaultTableModel mod){
+    
+    private void PoblarTabla(DefaultTableModel mod, Gestion gp, String abc){
         
         int cont = mod.getRowCount();
         
@@ -533,25 +790,28 @@ public class Ventana_V2 extends javax.swing.JFrame {
         
         String datos[] = new String[10];
         
-        Alumno[] arreglo_alumno = gp.getArreglo();
-        Docente[] arreglo_docente = gp.getArreglo();
+        Persona[] arreglo = gp.getArreglo();
         
-        
-        
-        
-        if(gp.getTipo() == 1){
+        try{
             for(int i=0;i<gp.getContador();i++){
+                datos[0] = arreglo[i].getNombre();
+                datos[1] = arreglo[i].getCodigo();
+                datos[2] = arreglo[i].getDistrito();
 
-                datos[0] = arreglo_alumno[i].getNombre();
-                datos[1] = arreglo_alumno[i].getCodigo();
-                datos[2] = arreglo_alumno[i].getDistrito();
+                if(abc.equalsIgnoreCase("Alumno")){
 
-                datos[3] = String.valueOf(arreglo_alumno[i].getCur());
-                datos[4] = String.valueOf(arreglo_alumno[i].getPromTotal());
+                    datos[3] = String.valueOf(((Alumno)arreglo[i]).getCur());
+                    datos[4] = String.valueOf(((Alumno)arreglo[i]).getPromTotal());
+
+                }
 
                 mod.addRow(datos);
+
             }
+            
+        } catch(Exception e){
+            System.out.println("Error en poblar tabla");
         }
     }
-    */
+    
 }

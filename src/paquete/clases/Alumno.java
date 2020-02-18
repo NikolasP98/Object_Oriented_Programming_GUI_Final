@@ -7,7 +7,6 @@ package paquete.clases;
 
 import java.time.Year;
 import java.util.Random;
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 import paquete.interfaces.Educacion;
 
@@ -19,7 +18,7 @@ public class Alumno extends Persona implements Educacion{
     private int[][] notas;
     private String[] cursos;
     private double[] promedios;
-    private int tiempo, cur;
+    private int cur;
     private double promTotal;
     
     

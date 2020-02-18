@@ -162,11 +162,13 @@ public class Loading extends javax.swing.JFrame {
             try {
                 Thread.sleep(500);
             } catch (Exception e) {
+                System.out.println("error en dormir");
             }
             
             this.dispose();
             
         } catch (Exception e) {
+            System.out.println("error en cargar");
         }
         
     }
